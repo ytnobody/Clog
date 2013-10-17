@@ -11,8 +11,9 @@ use Nephia plugins => [
     'Otogiri',
     'FormValidator::Lite',
     'JSON',
-    'View::MicroTemplate' => {
-        include_path => [File::Spec->catdir('view')],
+    'View::Xslate' => {
+        syntax => 'Kolon',
+        path   => [File::Spec->catdir('view')],
     },
     'ResponseHandler',
     'Dispatch',
@@ -45,7 +46,7 @@ SQL
 app {
     get '/' => sub {
         my @rows = db->select(event => {}, {order_by => 'id DESC', limit => 5});
-        {template => 'index.html', appname => 'Clog', rows => \@rows};
+        {template => 'index.tx', appname => 'Clog', rows => \@rows};
     };
 
     get '/api/event/new' => sub {
@@ -58,7 +59,7 @@ app {
             tags       => [[qw/LENGTH 1 255/]],
         );
 
-        return {status => 0, errors => $v->get_error_messages} if $v->has_error;
+        return {status => 0, errors => [$v->get_error_messages] } if $v->has_error;
 
         my $data = param->as_hashref;
         $data->{created_at} = localtime->strftime('%Y-%m-%d %H:%M:%S');

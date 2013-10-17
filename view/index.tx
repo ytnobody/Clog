@@ -1,0 +1,23 @@
+: cascade include::layout
+
+: around body -> {
+    <h1>Event List</h1>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Term</th>
+          <th>Tags</th>
+        </tr>
+      </thead>
+      <tbody>
+    : for $rows -> $row {
+        <tr>
+          <td><: $row.title :></td>
+          <td><: $row.begin_time :> to <: $row.end_time :></td>
+          <td><: $row.tags || '- - -' :></td>
+        </tr>
+    : }
+      </tbody>
+    </table>
+: }
