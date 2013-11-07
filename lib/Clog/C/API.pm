@@ -9,12 +9,12 @@ sub event_create {
         title      => [[qw/NOT_NULL/], [qw/LENGTH 1 140/]],
         begin_time => [[qw/NOT_NULL DATETIME/]],
         end_time   => [[qw/NOT_NULL DATETIME/]],
-        created_by => [[qw/NOT_NULL EMAIL/]],
+        created_by => [[qw/NOT_NULL EMAIL_LOOSE/]],
         note       => [[qw/LENGTH 1 1600/]],
         tags       => [[qw/LENGTH 1 255/]],
     );
 
-    return {status => 0, errors => [$v->get_error_messages]} if $v->has_error;
+    return {status => 0, errors => [sort $v->get_error_messages]} if $v->has_error;
 
     my $data = $c->param->as_hashref;
     $data->{created_at} = localtime->strftime('%Y-%m-%d %H:%M:%S');
@@ -45,7 +45,7 @@ sub event_update {
         tags       => [[qw/LENGTH 1 255/]],
     );
 
-    return {status => 0, errors => [$v->get_error_messages]} if $v->has_error;
+    return {status => 0, errors => [sort $v->get_error_messages]} if $v->has_error;
 
     my $data = $c->param->as_hashref;
     $data->{updated_at} = localtime->strftime('%Y-%m-%d %H:%M:%S');
@@ -77,7 +77,7 @@ sub comment_create {
         message => [[qw/NOT_NULL/], [qw/LENGTH 1 1600/]],
     );
 
-    return {status => 0, errors => [$v->get_error_messages]} if $v->has_error;
+    return {status => 0, errors => [sort $v->get_error_messages]} if $v->has_error;
 
     my $row = $c->db->insert(event_messages => {
         event_id   => $id,
