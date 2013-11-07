@@ -1,6 +1,7 @@
 package Clog::C::API;
 use strict;
 use warnings;
+use Time::Piece;
 
 sub event_create {
     my $c = shift;

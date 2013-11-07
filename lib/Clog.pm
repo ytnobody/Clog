@@ -2,7 +2,6 @@ package Clog;
 use strict;
 use warnings;
 use File::Spec;
-use Time::Piece;
 use utf8;
 
 our $VERSION = 0.01;
