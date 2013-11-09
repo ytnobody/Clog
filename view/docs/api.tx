@@ -1,0 +1,30 @@
+: cascade include::layout
+
+: around body -> {
+    <h1>API</h1>
+    <h3>Create an event</h3>
+    <dl class="dl-horizontal">
+      <dt>Method</dt><dd>post</dd> 
+      <dt>Path</dt><dd>/api/event/new</dd>
+    </dl>
+    <h3>Fetch an event</h3>
+    <dl class="dl-horizontal">
+      <dt>Method</dt><dd>get</dd> 
+      <dt>Path</dt><dd>/api/event/:id</dd>
+    </dl>
+    <h3>Update an event</h3>
+    <dl class="dl-horizontal">
+      <dt>Method</dt><dd>post</dd>
+      <dt>Path</dt><dd>/api/event/:id</dd>
+    </dl>
+    <h3>Delete an event</h3>
+    <dl class="dl-horizontal">
+      <dt>Method</dt><dd>delete</dd>
+      <dt>Path</dt><dd>/api/event/:id</dd>
+    </dl>
+    <h3>Comment to an event</h3>
+    <dl class="dl-horizontal">
+      <dt>Method</dt><dd>post</dd>
+      <dt>Path</dt><dd>/api/event/:id/comment</dd>
+    </dl>
+: }

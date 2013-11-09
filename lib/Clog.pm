@@ -42,7 +42,9 @@ CREATE TABLE IF NOT EXISTS event_messages (
 SQL
 
 app {
-    get '/'                       => Nephia->call('C::Root#index');
+    get  '/'                      => Nephia->call('C::Root#index');
+    get  '/docs/api'              => Nephia->call('C::Docs#api');
+    get  '/ical/recent'           => Nephia->call('C::ICal#recent');
     post '/api/event/new'         => Nephia->call('C::API#event_create');
     get  '/api/event/:id'         => Nephia->call('C::API#event');
     post '/api/event/:id'         => Nephia->call('C::API#event_update');

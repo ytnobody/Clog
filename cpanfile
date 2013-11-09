@@ -11,3 +11,6 @@ requires 'Cache::Cache'                        => 0;
 requires 'Plack::Middleware::CSRFBlock'        => 0;
 requires 'File::Spec';
 requires 'File::Temp';
+requires 'Data::ICal';
+requires 'Data::ICal::DateTime';
+requires 'Time::Piece';
